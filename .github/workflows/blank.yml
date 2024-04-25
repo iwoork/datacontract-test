@@ -17,7 +17,7 @@ jobs:
       id: read_yaml
       run: |
         YAML_CONTENT=$(cat datacontract.yaml)
-        echo "{file_content}=$YAML_CONTENT" >> $GITHUB_OUTPUT
+        echo "::set-output name=file_content::$YAML_CONTENT"
 
 
     - name: Validate the contract
