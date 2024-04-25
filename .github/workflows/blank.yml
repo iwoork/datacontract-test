@@ -25,10 +25,20 @@ jobs:
         API_URL="https://test.com"
         YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
 
-    - name: Generating observability
+    - name: Set up observability
       run: |
         API_URL="https://test.com"
         YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
+
+    - name: Set up DQ checks
+      run: |
+        API_URL="https://test.com"
+        YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
+
+    - name: Send output to EDMG
+      run: |
+        API_URL="https://test.com"       
+        
         # Here you can parse the YAML content and extract necessary data
         # Then make the API call using the extracted data
         # Example:
