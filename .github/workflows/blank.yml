@@ -16,7 +16,7 @@ jobs:
     - name: Read the datacontract.yaml file
       id: read_yaml
       run: |
-        YAML_CONTENT=$(cat path/to/your/yaml/file.yaml)
+        YAML_CONTENT=$(cat datacontract.yaml)
         echo "::set-output name=file_content::$YAML_CONTENT"
 
     - name: Validate the contract
