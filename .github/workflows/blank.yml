@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Read YAML file
+    - name: Read the datacontract.YAML file
       id: read_yaml
       run: |
         echo "::set-output name=file_content::$(cat datacontract.yaml)"
