@@ -6,19 +6,20 @@ on:
       - main
 
 jobs:
-  api_call_job:
+  data_contract_job:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Read the datacontract.YAML file
+    - name: Read the datacontract.yaml file
       id: read_yaml
       run: |
-        echo "::set-output name=file_content::$(cat datacontract.yaml)"
+        YAML_CONTENT=$(cat path/to/your/yaml/file.yaml)
+        echo "::set-output name=file_content::$YAML_CONTENT"
 
-    - name: Make API call
+    - name: Validate the contract
       run: |
         API_URL="https://test.com"
         YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
