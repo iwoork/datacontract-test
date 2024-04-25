@@ -19,7 +19,6 @@ jobs:
         YAML_CONTENT=$(cat datacontract.yaml)
         echo "::set-output name=file_content::$YAML_CONTENT"
 
-
     - name: Validate the contract
       run: |
         API_URL="https://test.com"
