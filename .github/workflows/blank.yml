@@ -1,0 +1,29 @@
+name: Data Contract
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  api_call_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Read YAML file
+      id: read_yaml
+      run: |
+        echo "::set-output name=file_content::$(cat datacontract.yaml)"
+
+    - name: Make API call
+      run: |
+        API_URL="https://test.com"
+        YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
+        # Here you can parse the YAML content and extract necessary data
+        # Then make the API call using the extracted data
+        # Example:
+        # echo "YAML content: $YAML_CONTENT"
+        # Use a tool like curl or a programming language's HTTP library to make the API call
