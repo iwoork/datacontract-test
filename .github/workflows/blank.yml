@@ -7,6 +7,7 @@ on:
 
 jobs:
   data_contract_job:
+    name: Data Contract
     runs-on: ubuntu-latest
 
     steps:
