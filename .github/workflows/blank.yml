@@ -1,19 +1,61 @@
-# This GitHub Action runs a Soda scan on a Snowflake data source called reporting_api_marts.
- name: Run Soda Scan on [reporting_api_marts]
- # GitHub triggers this job when a user creates or updates a pull request.
- on: pull_request
- jobs:
- soda_scan:
-   runs-on: ubuntu-latest
-   name: Run Soda Scan
-   steps:
-     - name: Checkout
-       uses: actions/checkout@v3
+name: Data Contract
 
-     - name: Perform Soda Scan
-       uses: sodadata/soda-github-action@main
-       with:
-         soda_library_version: v1.0.4
-         data_source: snowflake_api_marts
-         configuration: ./soda/configuration.yml
-         checks: ./soda/checks.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  data_contract_job:
+    name: Data Contract
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Read the datacontract.yaml file
+        id: read_yaml
+        run: |
+          YAML_CONTENT=$(cat datacontract.yaml)
+          echo "::set-output name=file_content::$YAML_CONTENT"
+
+      - name: Validate the contract
+        run: |
+          API_URL="https://test.com"
+          YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
+
+      - name: Set up observability
+        run: |
+          API_URL="https://test.com"
+          YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
+
+      - name: Set up DQ checks
+        run: |
+          API_URL="https://test.com"
+          YAML_CONTENT="${{ steps.read_yaml.outputs.file_content }}"
+
+      - name: Send output to EDMG
+        run: |
+          API_URL="https://test.com"       
+
+          # Here you can parse the YAML content and extract necessary data
+          # Then make the API call using the extracted data
+          # Example:
+          # echo "YAML content: $YAML_CONTENT"
+          # Use a tool like curl or a programming language's HTTP library to make the API call
+
+  soda_scan:
+    runs-on: ubuntu-latest
+    name: Run Soda Scan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Perform Soda Scan
+        uses: sodadata/soda-github-action@main
+        with:
+          soda_library_version: v1.0.4
+          data_source: snowflake_api_marts
+          configuration: ./soda/configuration.yml
+          checks: ./soda/checks.yml
