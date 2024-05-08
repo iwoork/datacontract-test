@@ -1,0 +1,9 @@
+data_source eg_trino:
+  type: trino
+  host: "egap-adhoc-trino.egdp-analytics.aws.away.black"
+  port: 8443
+  username: emacasaet
+  password: k3f12eNn1234!
+  catalog: hive
+  schema: egdp_prod_user
+  http_scheme: "https"

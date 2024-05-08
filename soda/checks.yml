@@ -1,0 +1,16 @@
+filter clickstream_eg_business_event_v2 [daily]:
+  where: event_date > date '2024-05-01'
+
+# checks for clickstream_eg_business_event_v2 [daily]:
+#   - missing_percent(point_of_sale) < 100:
+#       samples limit: 0
+
+checks for clickstream_eg_business_event_v2 [daily]:
+  - freshness(event_date) < 1d:
+      name: Check freshness
+  - missing_percent(point_of_sale.locale) < 50:
+      name: Check % of missing POS locale
+      samples limit: 0
+  - missing_percent(point_of_sale.eg_pos_id) < 50:
+      name: Check % of missing POS Id
+      samples limit: 0
