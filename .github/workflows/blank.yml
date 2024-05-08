@@ -56,6 +56,6 @@ jobs:
         uses: sodadata/soda-github-action@main
         with:
           soda_library_version: v1.0.4
-          data_source: snowflake_api_marts
+          data_source: eg_trino
           configuration: ./soda/configuration.yml
           checks: ./soda/checks.yml
